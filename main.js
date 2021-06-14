@@ -1,3 +1,8 @@
+var cWin = 0;
+var pWin = 0;
+var draw = 0;
+var round = 0;
+
 //randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’. 
 function computerPlay() {
     val = Math.random();
@@ -34,8 +39,16 @@ function singleRound(pInput, cInput) {
         winner = 'Player'
     }
 
+    let spInput = pInput.toLowerCase();
+    let scInput = cInput.toLowerCase();
+
+    document.getElementById("player-picked").src = "/img/"+spInput+".svg";
+    document.getElementById("computer-picked").src = "/img/"+scInput+".svg";
+
     if (winner == 'Nobody') {
-        return ("It's a draw")
+        document.getElementById("message").innerHTML = `It's a draw`;
+        winMessage="It's a draw";
+        return (winMessage);
     }
 
     if (winner == 'Computer') {
@@ -47,49 +60,78 @@ function singleRound(pInput, cInput) {
     }
 
 
-    winMessage = `${winner} win. ${winnerInput} beats ${loserInput}`
 
+    
+
+    winMessage = `${winner} win. ${winnerInput} beats ${loserInput}`
+    document.getElementById("message").innerHTML = `${winner} win`;
+    console.log(winMessage);
     return winMessage;
 
 }
-//promt input and validate it
-function valInput() {
-    var rawInput = '';
-    while (rawInput != 'Rock' && rawInput != 'Paper'&& rawInput != 'Scissor'){
-        rawInput = prompt("Pick between Rock/Paper/Scissor", "Rock")
-        rawInput = rawInput.toLowerCase();
-        rawInput = rawInput.charAt(0).toUpperCase()+rawInput.slice(1);
-        
-        if (rawInput != 'Rock' && rawInput != 'Paper'&& rawInput != 'Scissor'){
-            alert('Please insert correct input!')}
-    }
-    return(rawInput);
-}
-
 
 //include previous function, keep score and report winner until 5 win
-function game() {
+function game(e) {
     var roundResult;
     var winner;
-    var cWin = 0;
-    var pWin = 0;
-    var round = 0;
-    var pInput
-    while (pWin < 5 && cWin < 5) {
-        
-        roundResult = (singleRound(valInput(),computerPlay()));
-        if(roundResult.charAt(0) == 'C'){cWin++}
-        else if (roundResult.charAt(0) == 'P'){pWin++}
-        console.log('P:'+pWin + ' C:' + cWin + ' ' +roundResult);
+
+    //update interface based on round result     
+    roundResult = (singleRound(this.id,computerPlay()));
+    if(roundResult.charAt(0) == 'C'){
+        cWin++;
+        round++;
+        document.getElementById("cScore").innerText =cWin;
+        document.getElementById("roundNum").innerText =round;
+    }
+    else if (roundResult.charAt(0) == 'P'){
+        pWin++;
+        round++;
+        document.getElementById("pScore").innerText = pWin;
+        document.getElementById("roundNum").innerText =round;
+    }
+    else {
+        draw++;
+        round++;
+        document.getElementById("dScore").innerText = draw;
+        document.getElementById("roundNum").innerText =round;
+    }
+    console.log('P:'+pWin + ' C:' + cWin + ' ' +roundResult);
+
+    //game result
+    if (cWin == 5){
+        document.getElementById("message").innerHTML = `Sorry, you lost. [Auto reset in 3 second]`;
+    };
+    if (pWin == 5){
+        document.getElementById("message").innerHTML = `Congratulations, you win. [Auto reset in 3 second]`;
+    };
+
+    if (cWin == 5 || pWin == 5) {
+        setTimeout(() => { reset(); }, 3000);
+
+
     }
 
-    if (cWin == 5){winner = 'Computer'};
-    if (pWin == 5){winner = 'Player'};
 
-
-    console.log ('Final score is '+ pWin + ':' + cWin + ' Victory belong to '+ winner);
-    
+        
 }
 
-game();
+function reset() {
+    cWin = 0;
+    pWin = 0;
+    draw = 0;
+    round = 0;
+    document.getElementById("cScore").innerText = cWin;
+    document.getElementById("pScore").innerText = pWin;
+    document.getElementById("dScore").innerText = draw;
+    document.getElementById("roundNum").innerText =round;
+    document.getElementById("player-picked").src = "/img/blank.svg";
+    document.getElementById("computer-picked").src = "/img/blank.svg";
+    document.getElementById("message").innerHTML = `Pick your hands`;
+    console.clear()
+}
+
+
+document.getElementById("Rock").addEventListener("click", game);
+document.getElementById("Paper").addEventListener("click", game);
+document.getElementById("Scissor").addEventListener("click", game);
 

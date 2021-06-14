@@ -1,0 +1,35 @@
+body {
+    text-align: center;
+    font-family: 'Press Start 2P';
+    margin: 30px 0 0 0;
+    font-size: 14px;
+}
+
+.message {
+    height: 50px;
+    margin-top: 40px;
+}
+
+.picked {
+    height: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.human, .computer  {
+    height: 100px;
+    display: inline-block;
+}
+
+.input {
+    background-color: rgb(255, 218, 117);
+    border: 2px solid rgb(146, 125, 66);
+
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.human .input:hover{
+    background-color: rgb(236, 192, 69);
+}
+

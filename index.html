@@ -4,11 +4,49 @@
   <head>
     <meta charset='utf-8'>
     <title>Rock Paper Scissor</title>
-    <script type="text/javascript" src="main.js"></script>
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
   </head>
   <!--A rock-paper-scissor game-->
   <body>
 
+    <div class="round">
+      <p>Round <span id="roundNum">0</span></p>
+    </div>
 
+    <!-- score -->
+    <div class="score">
+      <p><span id="pScore">0</span> : <span id="dScore">0</span> : <span id="cScore">0</span></p>
+    </div>
+
+
+
+    <div class="message"><p id="message">Pick your hands</p></div>
+
+    <div class="picked">
+      <img id='player-picked' src='/img/blank.svg'>
+      <img id='computer-picked' src='/img/blank.svg'>
+    </div>
+
+    <!-- rock-paper-scissor button -->
+    <div class="human" id='human'>
+      <div class='input rock'  id ='Rock' ><img class='choice' src='/img/rock.svg'></div>
+      <div class='input paper'  id ='Paper' ><img class='choice' src='/img/paper.svg'></div>
+      <div class='input scissor'  id ='Scissor' ><img class='choice' src='/img/scissor.svg'></div>  
+      <p>Player</p>
+    </div>
+   
+    <div class="computer">
+      <div class='input rock' ><img class='choice' src='/img/rock.svg'></div>
+      <div class='input paper'><img class='choice' src='/img/paper.svg'></div>
+      <div class='input scissor'><img class='choice' src='/img/scissor.svg'></div>
+      <p>Computer</p>
+    </div>
+
+
+    
+    <script type="text/javascript" src="main.js"></script>
   </body>
 </html>
