@@ -42,8 +42,8 @@ function singleRound(pInput, cInput) {
     let spInput = pInput.toLowerCase();
     let scInput = cInput.toLowerCase();
 
-    document.getElementById("player-picked").src = "/img/"+spInput+".svg";
-    document.getElementById("computer-picked").src = "/img/"+scInput+".svg";
+    document.getElementById("player-picked").src = "https://raw.githubusercontent.com/alta95/rock-paper-scissor-ui/21b036c2b23a31b3e4023c119896f975d17a396a/img"+spInput+".svg";
+    document.getElementById("computer-picked").src = "https://raw.githubusercontent.com/alta95/rock-paper-scissor-ui/21b036c2b23a31b3e4023c119896f975d17a396a/img"+scInput+".svg";
 
     if (winner == 'Nobody') {
         document.getElementById("message").innerHTML = `It's a draw`;
@@ -124,8 +124,8 @@ function reset() {
     document.getElementById("pScore").innerText = pWin;
     document.getElementById("dScore").innerText = draw;
     document.getElementById("roundNum").innerText =round;
-    document.getElementById("player-picked").src = "/img/blank.svg";
-    document.getElementById("computer-picked").src = "/img/blank.svg";
+    document.getElementById("player-picked").src = "https://raw.githubusercontent.com/alta95/rock-paper-scissor-ui/21b036c2b23a31b3e4023c119896f975d17a396a/img/blank.svg";
+    document.getElementById("computer-picked").src = "https://raw.githubusercontent.com/alta95/rock-paper-scissor-ui/21b036c2b23a31b3e4023c119896f975d17a396a/img/blank.svg";
     document.getElementById("message").innerHTML = `Pick your hands`;
     console.clear()
 }
